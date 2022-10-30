@@ -37,5 +37,19 @@ export const Theme = {
     blue800:"#134F7B",
     blue900:"#0E3B5C",
     blue1000:"#09273d"
+  },
+  danger:{
+    hover: "#FFF3F4",
+    active:"#FFC8CC",
+    danger050:"#FF898D",
+    danger100:"#FF666A",
+    danger200:"#FF4248",
+    danger300:"#FF1E25",
+    danger400:"#F90008",
+    danger500:"#D60006",
+    danger600:"#B20005",
+    danger700:"#8E0004",
+    danger800:"#6B0003",
+    danger900:"#470002",
   }
 }
