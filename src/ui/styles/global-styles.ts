@@ -85,5 +85,20 @@ button{
   text-decoration: none;
   text-indent: 0;
 	font-family: 'Montserrat', sans-serif;
+	border: none;
+  outline: none;
+  outline: unset;
 }
+button::-moz-focus-inner,
+input[type=button]::-moz-focus-inner {
+  border: 0;
+}
+button:active,
+button:focus{
+	border: none;
+	outline: none;
+  outline: unset;
+}
+
+
 `
