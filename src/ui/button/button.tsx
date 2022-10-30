@@ -1,4 +1,6 @@
 import { ButtonStyle } from "./button-style";
+import { IconList } from "../iconsList";
+import { Icon } from "../icon/icon";
 
 interface IButton {
   text?: string;
@@ -6,12 +8,15 @@ interface IButton {
   type: 'primary'
   | 'secondary'
   | 'tertiary'
-  | 'danger'
+  | 'danger1'
+  | 'danger2'
   | 'success'
   | 'iconButton',
   iconButton?: string;
   disabled?: boolean;
   radius?: 'low' | 'medium' | 'hight'
+  onClick?: (ev: any) =>  void;
+  iconLeft?: string;
 }
 
 export const Button = (props: IButton) => {
@@ -24,6 +29,9 @@ export const Button = (props: IButton) => {
         ${props.disabled ? 'disabled' : 'active'}
         button
       `}
+      onClick={(ev: any) => {
+        props.onClick && props.onClick(ev);
+      }}
     >
       <div className="button-center">
         {(props.type === 'iconButton' && props.iconButton) ? (
