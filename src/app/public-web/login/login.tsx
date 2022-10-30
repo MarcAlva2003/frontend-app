@@ -18,7 +18,7 @@ export const Login = () => {
     .then(
       (token) => {
         if(token){
-          Cookies.set(SESSION_COOKIE_NAME, token)
+          Cookies.set(SESSION_COOKIE_NAME, token.token)
           window.location.href = '/profile'; 
         } else {
           setError('El usuario y/o contraseña que ingresó son incorrectos.')
