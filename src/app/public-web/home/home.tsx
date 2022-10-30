@@ -1,44 +1,46 @@
 import { HomeStyle } from "./home-style";
 import { format } from 'date-fns';
 import { getCompaniesList } from "../../../services/companies";
+import { getDeleteCompany } from "../../../services/companies";
 import {
   Heading1,
   Subhead1,
   Text16
 } from "../../../ui/styles/typography";
+import { Link, useNavigate } from "react-router-dom";
+import { Icon } from "../../../ui/icon/icon";
+import { IconList } from "../../../ui/iconsList";
 import { Button } from "../../../ui/button/button";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { isAuthenticated } from "../../../services/auth";
+import { DeleteCompanyModal } from "../delete-company-modal/delete-company-modal";
 import { ICompany } from "../../../services/interfaces";
 
 
 export const Home = () => {
-
-  const dataMock = [
-    {
-      name: 'Cocacola',
-      date: new Date(),
-      country: "EEUU",
-    },
-    {
-      name: 'McDonalds',
-      date: new Date(),
-      country: "EEUU",
-    },
-    {
-      name: 'Toyota',
-      date: new Date(),
-      country: "Japan",
-    },
-    {
-      name: 'Cocacola',
-      date: new Date(),
-      country: "EEUU",
-    },
-  ]
+  const navigate = useNavigate();
   const [companies, setCompanies] = useState<ICompany[]>();
-  useEffect(()=>{
+  useEffect(() => {
     getCompaniesList().then(res => setCompanies(res));
-  },[])
+  }, [])
+
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [companyToDeleteId, setCompanyToDeleteId] = useState<string>('');
+
+  const handleDeleteCompany = (id: string) => {
+    getDeleteCompany(id);
+    setDeleteModal(false);
+    document.location.reload();
+  }
+
+  const handleDeleteCompanyAuth = (id: string) => {
+    if (isAuthenticated()) {
+      setDeleteModal(true);
+      setCompanyToDeleteId(id);
+    } else {
+      navigate("/login");
+    }
+  }
 
   return (
     <HomeStyle>
@@ -46,13 +48,17 @@ export const Home = () => {
         <div className="home-content">
           <div className="home">
             <div className="home-title">
-              <Heading1>Companies List</Heading1>
-              <Button
-                text="Add company"
-                type="primary"
-                size="large"
-                radius="medium"
-              />
+              <div className="home-title--title">
+                <Heading1>Companies List</Heading1>
+              </div>
+              <div className="home-title--button">
+                <Button
+                  text="Add company"
+                  type="primary"
+                  size="large"
+                  radius="medium"
+                />
+              </div>
             </div>
             <div className="companies-list">
               {companies?.map((item: any, index: number) => (
@@ -71,13 +77,27 @@ export const Home = () => {
                     </div>
                   </div>
                   <div className="company-card-buttons">
-                    <Button
-                      type="secondary"
-                      size="large"
-                      text="Button Test"
-                      radius="low"
-                      // disabled
-                    />
+                    <div className="company-card-buttons--button">
+                      <Link to="/login">
+                        <Button
+                          type="secondary"
+                          size="large"
+                          text="Details"
+                          radius="low"
+                        />
+                      </Link>
+                    </div>
+                    <div className="company-card-buttons--button">
+                      <Button
+                        type="danger1"
+                        size="large"
+                        text="Delete"
+                        radius="low"
+                        onClick={() => {
+                          handleDeleteCompanyAuth(item?.id)
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -85,6 +105,15 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <DeleteCompanyModal
+        active={deleteModal}
+        onClose={() => {
+          setDeleteModal(false);
+        }}
+        onAccept={() => {
+          isAuthenticated() ? handleDeleteCompany(companyToDeleteId) : navigate('/login');
+        }}
+      />
     </HomeStyle>
   )
 }

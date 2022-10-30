@@ -22,10 +22,26 @@ export const HomeStyle = styled.div`
       &:last-child{
         border-bottom: 1px solid ${props => props.theme.greys.grey200};
       }
+      &-name,
+      &-text{
+        margin-bottom: 12px;
+      }
+      &-buttons{
+        display: flex;
+        &--button{
+          margin-right: 12px;
+          &:last-child{
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
   .home-title{
     display: flex;
     justify-content: space-between;
+    &--button{
+      width: fit-content;
+    }
   }
 `
