@@ -52,12 +52,14 @@ export const Home = () => {
                 <Heading1>Companies List</Heading1>
               </div>
               <div className="home-title--button">
-                <Button
-                  text="Add company"
-                  type="primary"
-                  size="large"
-                  radius="medium"
-                />
+                <Link to="/companies/add">
+                  <Button
+                    text="Add company"
+                    type="primary"
+                    size="large"
+                    radius="medium"
+                  />
+                </Link>
               </div>
             </div>
             <div className="companies-list">
@@ -78,7 +80,7 @@ export const Home = () => {
                   </div>
                   <div className="company-card-buttons">
                     <div className="company-card-buttons--button">
-                      <Link to="/login">
+                      <Link to={`/companies/${item?.id}`}>
                         <Button
                           type="secondary"
                           size="large"

@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { ICompany } from "./interfaces";
 
 const COMPANIES_LIST_PATH = '/companies/list/';
+const COMPANY_ID_PATH = '/companies/';
 const COMPANY_DELETE_PATH = '/companies/delete/'
 
 export const getCompaniesList = async () => {
@@ -13,6 +14,17 @@ export const getCompaniesList = async () => {
       `${BASE_URL}${COMPANIES_LIST_PATH}`
     )
     return res.data;
+  } catch (err) {
+    return undefined;
+  }
+}
+
+export const getCompanyDetail = async (id: string) => {
+  try{
+    const res = await axios.get<any>(
+      `${BASE_URL}${COMPANY_ID_PATH}${id}`
+    )
+    return res.data
   } catch (err) {
     return undefined;
   }
