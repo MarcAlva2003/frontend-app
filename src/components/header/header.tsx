@@ -20,11 +20,11 @@ export const Header = () => {
         <header className="header-content">
           <div className="header-left">
             <div className="header-left-logo">
-              <a href="/">
+              <Link to="/">
                 <Heading1>
                   WHERE´S MY COMPANY
                 </Heading1>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="header-right">
@@ -32,18 +32,20 @@ export const Header = () => {
               <nav>
                 <ul>
                   <li>
-                    <a href="">
+                  <Link to="/">
                       <p>COMPANIES LIST</p>
-                    </a>
+                    </Link>
                   </li>
                   {isLogged && (
                     <li>
-                      <a href="">PROFILE</a>
+                      <Link to="/profile">
+                        PROFILE
+                      </Link>
                     </li>
                   )}
                   {isLogged && (
                     <li>
-                      <p className="logoit" onClick={handleLogout}>LOGOUT</p>
+                      <p className="logout-button" onClick={handleLogout}>LOGOUT</p>
                     </li>
                   )}
                   {!isLogged && (
@@ -53,7 +55,7 @@ export const Header = () => {
                   )}
                   {!isLogged && (
                     <li>
-                      <a href="">REGISTER</a>
+                      <Link to="/register">REGISTER</Link>
                     </li>
                   )}
                 </ul>

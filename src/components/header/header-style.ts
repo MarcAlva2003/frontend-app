@@ -22,6 +22,9 @@ export const HeaderStyle = styled.div`
       margin-left: 18px;
     }
   }
+  .logout-button{
+    cursor: pointer;
+  }
   @media (max-width: 1024px){
     .header-content{
       padding: 0 40px;

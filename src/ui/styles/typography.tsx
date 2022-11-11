@@ -1,12 +1,21 @@
 import styled, { css } from "styled-components";
 
+interface TextProps{
+  color?: string;
+  weight?: number;
+  disabled?: boolean;
+}
+
 const Heading1Style = css`
   font-size: 32px;
   line-height: 36px;
   font-weight: 600;
 `
-export const Heading1 =  styled.h1`
+export const Heading1 = styled.h1.attrs((props: TextProps) => props)`
   ${Heading1Style}
+  ${props => props.color && css`
+    color: ${props.color}
+  `};
 `
 
 const Heading2Style = css`
@@ -47,8 +56,14 @@ const Text14Style = css`
   line-height: 16px;
   font-weight: 300;
 `
-export const Text14 =  styled.h4`
+export const Text14 =  styled.h4.attrs((props: TextProps) => props)`
   ${Text14Style}
+  ${props => props.color && css`
+    color: ${props.color}
+  `};
+  ${props => props.weight && css`
+    font-weight: ${props.weight}
+  `};
 `
 
 const Text12Style = css`
