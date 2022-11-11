@@ -1,5 +1,6 @@
 import { LoginStyle } from './login-style'
 import { login } from '../../../services/auth'
+import { Input } from '../../../ui/input/input';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie';
@@ -43,7 +44,7 @@ export const Login = () => {
         <form action="">
           <div className='username-input input-group'>
             <Text16>User</Text16>
-            <input
+            <Input
               type="text"
               placeholder='User'
               value={username}
@@ -52,7 +53,7 @@ export const Login = () => {
           </div>
           <div className='password-input input-group'>
             <Text16>Password</Text16>
-            <input
+            <Input
               type="password"
               placeholder='Password'
               value={password}
