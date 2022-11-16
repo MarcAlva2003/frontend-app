@@ -21,7 +21,10 @@ export const Login = () => {
       .then(
         (token) => {
           if (token) {
-            Cookies.set(SESSION_COOKIE_NAME, token.token)
+            const cookie_expitarion_time = new Date(new Date().getTime() + 15 * 60 * 1000);
+            Cookies.set(SESSION_COOKIE_NAME, token.token, {
+              expires: cookie_expitarion_time
+          })
             window.location.href = '/profile';
           } else {
             setError('El usuario y/o contraseña que ingresó son incorrectos.')

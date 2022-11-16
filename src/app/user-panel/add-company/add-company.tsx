@@ -1,8 +1,10 @@
-import { useForm } from "react-hook-form";
-import { AddCompanyStyle } from "./add-company-style";
-import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 
+import { AddCompanyStyle } from "./add-company-style";
+import { ICompany } from "../../../services/interfaces";
+import axios from "axios";
+import { getAddCompany } from "../../../services/companies";
+import { useForm } from "react-hook-form";
 
 export const AddCompany = () => {
   const COUNTRIES_API_BASE_URL = 'https://restcountries.com';
@@ -26,7 +28,19 @@ export const AddCompany = () => {
   }, []);
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    // console.log(data);
+    // console.log(new Date(data.foundation_date).getDate() + 1)
+    // console.log(new Date(data.foundation_date).getMonth() + 1)
+    // console.log(new Date(data.foundation_date).getFullYear())
+    console.log(
+      data
+    )
+    getAddCompany({
+      name: data.name,
+      company_bussiness: data.company_bussiness,
+      foundation_date: data.foundation_date,
+      foundation_country: data.foundation_country,
+    }).then(res => console.log('data', res))
   }
 
   return (
@@ -67,7 +81,7 @@ export const AddCompany = () => {
                 type="text"
                 placeholder="Company bussiness"
                 {
-                ...register('bussiness', {
+                ...register('company_bussiness', {
                   required: true,
                   maxLength: 200,
                   pattern: /^[A-Za-zÀ-ú0-9-ñÑ ]+$/
@@ -75,13 +89,13 @@ export const AddCompany = () => {
                 }
               />
               <div>
-                {errors.bussiness?.type === 'required' && (
+                {errors.company_bussiness?.type === 'required' && (
                   <p>The bussiness of the company is requiered</p>
                 )}
-                {errors.bussiness?.type === 'maxLength' && (
+                {errors.company_bussiness?.type === 'maxLength' && (
                   <p>The bussiness cannot be longer than 200 characters</p>
                 )}
-                {errors.bussiness?.type === 'pattern' && (
+                {errors.company_bussiness?.type === 'pattern' && (
                   <p>The bussiness can only have letters and numbers</p>
                 )}
               </div>
@@ -126,7 +140,7 @@ export const AddCompany = () => {
                 )}
               </div>
             </div>
-            <input type="submit" value="send" />
+            <input type="submit" value="send"/>
           </form>
         </div>
       </div>

@@ -1,21 +1,22 @@
-import { HomeStyle } from "./home-style";
-import { format } from 'date-fns';
-import { getCompaniesList } from "../../../services/companies";
-import { getDeleteCompany } from "../../../services/companies";
 import {
   Heading1,
   Subhead1,
   Text16
 } from "../../../ui/styles/typography";
 import { Link, useNavigate } from "react-router-dom";
+import {enUS, es} from "date-fns/locale";
+import { useEffect, useState } from "react";
+
+import { Button } from "../../../ui/button/button";
+import { DeleteCompanyModal } from "../delete-company-modal/delete-company-modal";
+import { HomeStyle } from "./home-style";
+import { ICompany } from "../../../services/interfaces";
 import { Icon } from "../../../ui/icon/icon";
 import { IconList } from "../../../ui/iconsList";
-import { Button } from "../../../ui/button/button";
-import { useState, useEffect } from "react";
+import { format } from 'date-fns';
+import { getCompaniesList } from "../../../services/companies";
+import { getDeleteCompany } from "../../../services/companies";
 import { isAuthenticated } from "../../../services/auth";
-import { DeleteCompanyModal } from "../delete-company-modal/delete-company-modal";
-import { ICompany } from "../../../services/interfaces";
-
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -41,6 +42,17 @@ export const Home = () => {
       navigate("/login");
     }
   }
+
+  const getOrdinal = (number: number): string => {
+    if(number !== 11 && number !== 12){
+      const lastChar = number.toString()[number.toString().length - 1];
+      return lastChar === '1' ? `${number}st`
+        : lastChar === '2' ? `${number}nd`
+        : lastChar === '3' ? `${number}rd`
+        : `${number}th`;
+    }
+    return `${number}th`;
+  };
 
   return (
     <HomeStyle>
@@ -73,9 +85,9 @@ export const Home = () => {
                       <Text16>Foundation country: {item?.foundation_country}</Text16>
                     </div>
                     <div className="company-card-text--date">
-                      <Text16>Foundation date: {
-                        format(new Date(item?.foundation_date), 'dd/MM/yyyy')
-                      }</Text16>
+                      <Text16>Foundation date: {getOrdinal(new Date(item?.foundation_date).getDate() + 1)}
+                        {format(new Date(item?.foundation_date), ` MMMM, yyyy`, {locale: enUS})}
+                        </Text16>
                     </div>
                   </div>
                   <div className="company-card-buttons">

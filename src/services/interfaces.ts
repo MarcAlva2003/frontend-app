@@ -1,7 +1,7 @@
 export interface ICompany {
-  id: number;
+  id?: number;
   name: string;
-  company_business: string;
+  company_bussiness: string;
   foundation_country: string;
   foundation_date: string;
 }
