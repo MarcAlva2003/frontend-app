@@ -11,11 +11,10 @@ import { Button } from "../../../ui/button/button";
 import { DeleteCompanyModal } from "../delete-company-modal/delete-company-modal";
 import { HomeStyle } from "./home-style";
 import { ICompany } from "../../../services/interfaces";
-import { Icon } from "../../../ui/icon/icon";
-import { IconList } from "../../../ui/iconsList";
 import { format } from 'date-fns';
 import { getCompaniesList } from "../../../services/companies";
 import { getDeleteCompany } from "../../../services/companies";
+import { getOrdinal } from "../../../services/date-ordinal";
 import { isAuthenticated } from "../../../services/auth";
 
 export const Home = () => {
@@ -43,16 +42,16 @@ export const Home = () => {
     }
   }
 
-  const getOrdinal = (number: number): string => {
-    if(number !== 11 && number !== 12){
-      const lastChar = number.toString()[number.toString().length - 1];
-      return lastChar === '1' ? `${number}st`
-        : lastChar === '2' ? `${number}nd`
-        : lastChar === '3' ? `${number}rd`
-        : `${number}th`;
-    }
-    return `${number}th`;
-  };
+  // const getOrdinal = (number: number): string => {
+  //   if(number !== 11 && number !== 12){
+  //     const lastChar = number.toString()[number.toString().length - 1];
+  //     return lastChar === '1' ? `${number}st`
+  //       : lastChar === '2' ? `${number}nd`
+  //       : lastChar === '3' ? `${number}rd`
+  //       : `${number}th`;
+  //   }
+  //   return `${number}th`;
+  // };
 
   return (
     <HomeStyle>
