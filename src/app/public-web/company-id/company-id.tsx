@@ -1,47 +1,50 @@
-import { useMemo, useEffect, useState } from 'react';
+import { enUS, es } from "date-fns/locale";
+import { useEffect, useMemo, useState } from 'react';
+
 import { CompanyIdStyle } from "./company-id-style";
-import { useParams } from "react-router-dom";
 import { Heading1 } from '../../../ui/styles/typography';
-import { getCompanyDetail } from "../../../services/companies";
 import { ICompany } from '../../../services/interfaces';
+import { Subhead2 } from '../../../ui/styles/typography';
+import { format } from 'date-fns';
+import { getCompanyDetail } from "../../../services/companies";
+import { getOrdinal } from '../../../services/date-ordinal';
+import { useParams } from "react-router-dom";
 
 export const CompanyId = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [data, setData] = useState<ICompany | undefined>(undefined);
-  // const data = useMemo(()=>{
-  //   if(id){
-  //       const asd: any = 
-  //         // console.log(res)
-  //         return Object(asd);
-  //       } );
-  //   } else {
-  //     return undefined;
-  //   }
-    
-  // },[id])
 
-  useEffect(()=>{
+  useEffect(() => {
     id && getCompanyDetail(id).then(res => setData(res))
-  },[id])
+  }, [id])
 
-  return(
+  return (
     <CompanyIdStyle>
       <div className='company-id-background'>
-        <div className='company-heading'>
-          <div className='company-heading--back'>
-            {/* BACK BUTTON */}
+        {data && (
+          <div className='company-container'>
+            <div className='company-name'>
+              <Heading1>{data?.name}</Heading1>
+            </div>
+            <div className='company-bussiness company-data-row'>
+              <div className='company-data-row--item'><Subhead2 weight={600}>Business:</Subhead2></div>
+              <div className='company-data-row--item'><Subhead2 weight={400}>{data?.company_business}</Subhead2></div>
+            </div>
+            <div className='company-foundation-county company-data-row'>
+              <div className='company-data-row--item'><Subhead2 weight={600}>Foundation country: </Subhead2></div>
+              <div className='company-data-row--item'><Subhead2 weight={400}>{data?.foundation_country}</Subhead2></div>
+            </div>
+            <div className='company-foundation-date company-data-row'>
+              <div className='company-data-row--item'><Subhead2 weight={600}>Foundation date: </Subhead2></div>
+              <div className='company-data-row--item'>
+                <Subhead2 weight={400}>
+                  {getOrdinal(new Date(data?.foundation_date).getDate() + 1)}
+                  {format(new Date(data?.foundation_date), ` MMMM, yyyy`, { locale: enUS })}
+                </Subhead2>
+              </div>
+            </div>
           </div>
-          <div className='company-heading--title'>
-            <Heading1>{data?.name}</Heading1>
-          </div>
-        </div>
-        
-        <p>COMPANY ID - {id}</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>{JSON.stringify(data)}</p>
+        )}
       </div>
     </CompanyIdStyle>
   )
