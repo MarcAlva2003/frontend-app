@@ -16,6 +16,9 @@ export const Heading1 = styled.h1.attrs((props: TextProps) => props)`
   ${props => props.color && css`
     color: ${props.color}
   `};
+  ${props => props.weight && css`
+    font-weight: ${props.weight}
+  `};
 `
 
 const Heading2Style = css`
@@ -23,8 +26,14 @@ const Heading2Style = css`
   line-height: 32px;
   font-weight: 600;
 `
-export const Heading2 =  styled.h2`
+export const Heading2 =  styled.h2.attrs((props: TextProps) => props)`
   ${Heading2Style}
+  ${props => props.color && css`
+    color: ${props.color}
+  `};
+  ${props => props.weight && css`
+    font-weight: ${props.weight}
+  `};
 `
 
 const Subhead1Style = css`
@@ -32,24 +41,42 @@ const Subhead1Style = css`
   line-height: 28px;
   font-weight: 500;
 `
-export const Subhead1 =  styled.h4`
+export const Subhead1 =  styled.h4.attrs((props: TextProps) => props)`
   ${Subhead1Style}
+  ${props => props.color && css`
+    color: ${props.color}
+  `};
+  ${props => props.weight && css`
+    font-weight: ${props.weight}
+  `};
 `
 const Subhead2Style = css`
   font-size: 20px;
   line-height: 24px;
   font-weight: 500;
 `
-export const Subhead2 =  styled.h4`
+export const Subhead2 =  styled.h4.attrs((props: TextProps) => props)`
   ${Subhead2Style}
+  ${props => props.color && css`
+    color: ${props.color}
+  `};
+  ${props => props.weight && css`
+    font-weight: ${props.weight}
+  `};
 `
 const Text16Style = css`
   font-size: 16px;
   line-height: 20px;
   font-weight: 400;
 `
-export const Text16 =  styled.h4`
+export const Text16 =  styled.h4.attrs((props: TextProps) => props)`
   ${Text16Style}
+  ${props => props.color && css`
+    color: ${props.color}
+  `};
+  ${props => props.weight && css`
+    font-weight: ${props.weight}
+  `};
 `
 const Text14Style = css`
   font-size: 14px;
@@ -71,6 +98,12 @@ const Text12Style = css`
   line-height: 14px;
   font-weight: 300;
 `
-export const Text12 =  styled.h4`
+export const Text12 =  styled.h4.attrs((props: TextProps) => props)`
   ${Text12Style}
+  ${props => props.color && css`
+    color: ${props.color}
+  `};
+  ${props => props.weight && css`
+    font-weight: ${props.weight}
+  `};
 `
