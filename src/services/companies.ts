@@ -51,32 +51,7 @@ export const getDeleteCompany = async (id: string) => {
 
 export const getAddCompany = async (data: ICompany) => {
   const token = Cookies.get(SESSION_COOKIE_NAME);
-  console.log(token)
-  // token && console.log(token);
-
-  // axios({
-  //   method: 'post',
-  //   url: baseUrl + 'applications/' + appName + '/dataexport/plantypes' + plan,
-  //   headers: {}, 
-  //   data: {
-  //     foo: 'bar', // This is the body part
-  //   }
-  // });
-
-
   try {
-    // const res = await axios.post(
-    //   `${BASE_URL}${COMPANY_ADD_PATH}`,
-    //   data: {
-    //   name: data.name,
-    //   company_business: data.company_bussiness,
-    //   foundation_date: data.foundation_date,
-    //   foundation_country: data.foundation_country,
-    // },
-    //   headers: {
-    //   "Authorization": `Token ${token}`
-    // }
-    // )
     const res = await axios({
       method: 'post',
       url: `${BASE_URL}${COMPANY_ADD_PATH}`,
@@ -85,12 +60,12 @@ export const getAddCompany = async (data: ICompany) => {
       },
       data: {
         name: data.name,
-        company_business: data.company_bussiness,
+        company_business: data.company_business,
         foundation_date: data.foundation_date,
         foundation_country: data.foundation_country,
       },
     });
-    console.log('res', res.data)
+    console.log('res', res.data) 
     return res.data;
   } catch (err) {
     console.log('err', err);

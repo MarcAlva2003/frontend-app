@@ -15,7 +15,7 @@ export const AddCompany = () => {
   // handleSubmit: accion cuando se le hace submit al formulario
   // formState: nos da informacion del campo, si fue tocado, visitado, errores, etc
   //defaultValues para colocar calores por default (útil en editar compañia)
-  // -->  useForm( { defaultValues: {name: 'asdasd', bussiness:'adsadas'} } );
+  // -->  useForm( { defaultValues: {name: 'asdasd', business:'adsadas'} } );
   const [countriesList, setCountriesList] = useState<string[]>([]);
   useEffect(() => {
     axios.get(`${COUNTRIES_API_BASE_URL}${COUNTRIES_API_PATH}`)
@@ -37,7 +37,7 @@ export const AddCompany = () => {
     )
     getAddCompany({
       name: data.name,
-      company_bussiness: data.company_bussiness,
+      company_business: data.company_business,
       foundation_date: data.foundation_date,
       foundation_country: data.foundation_country,
     }).then(res => console.log('data', res))
@@ -76,12 +76,12 @@ export const AddCompany = () => {
               </div>
             </div>
             <div>
-              <label>Bussiness</label>
+              <label>Business</label>
               <input
                 type="text"
-                placeholder="Company bussiness"
+                placeholder="Company business"
                 {
-                ...register('company_bussiness', {
+                ...register('company_business', {
                   required: true,
                   maxLength: 200,
                   pattern: /^[A-Za-zÀ-ú0-9-ñÑ ]+$/
@@ -89,14 +89,14 @@ export const AddCompany = () => {
                 }
               />
               <div>
-                {errors.company_bussiness?.type === 'required' && (
-                  <p>The bussiness of the company is requiered</p>
+                {errors.company_business?.type === 'required' && (
+                  <p>The business of the company is requiered</p>
                 )}
-                {errors.company_bussiness?.type === 'maxLength' && (
-                  <p>The bussiness cannot be longer than 200 characters</p>
+                {errors.company_business?.type === 'maxLength' && (
+                  <p>The business cannot be longer than 200 characters</p>
                 )}
-                {errors.company_bussiness?.type === 'pattern' && (
-                  <p>The bussiness can only have letters and numbers</p>
+                {errors.company_business?.type === 'pattern' && (
+                  <p>The business can only have letters and numbers</p>
                 )}
               </div>
             </div>
@@ -113,7 +113,7 @@ export const AddCompany = () => {
               />
               <div>
                 {errors.foundation_date?.type === 'required' && (
-                  <p>The bussiness of the company is requiered</p>
+                  <p>The business of the company is requiered</p>
                 )}
               </div>
             </div>
@@ -136,7 +136,7 @@ export const AddCompany = () => {
               </select>
               <div>
                 {errors.foundation_country?.type === 'required' && (
-                  <p>The bussiness of the company is requiered</p>
+                  <p>The business of the company is requiered</p>
                 )}
               </div>
             </div>
