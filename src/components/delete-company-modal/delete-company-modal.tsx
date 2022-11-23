@@ -1,7 +1,7 @@
+import { Button } from "../../ui/button/button";
 import { DeleteCompanyModalStyle } from "./delete-company-modal-style";
-import { ModalWrapper } from "../../../ui/modal-wrapper/modal-wrapper";
-import { Button } from "../../../ui/button/button";
-import { Subhead1 } from "../../../ui/styles/typography";
+import { ModalWrapper } from "../../ui/modal-wrapper/modal-wrapper";
+import { Subhead1 } from "../../ui/styles/typography";
 
 interface IDeleteCompanyModal{
   active: boolean;

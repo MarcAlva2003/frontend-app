@@ -1,14 +1,15 @@
-import { LoginStyle } from './login-style'
-import { login } from '../../../services/auth'
-import { Input } from '../../../ui/input/input';
-import { useNavigate } from "react-router-dom";
+import { Heading2, Text14, Text16 } from '../../../ui/styles/typography';
 import { useEffect, useState } from 'react'
-import Cookies from 'js-cookie';
-import { Heading2, Text16, Text14 } from '../../../ui/styles/typography';
+
 import { Button } from '../../../ui/button/button';
+import Cookies from 'js-cookie';
+import { Input } from '../../../ui/input/input';
+import { LoginStyle } from './login-style'
 import { SESSION_COOKIE_NAME } from '../../../services/auth';
-import { isAuthenticated } from "../../../services/auth";
 import { Theme } from '../../../ui/styles/theme';
+import { isAuthenticated } from "../../../services/auth";
+import { login } from '../../../services/auth'
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -21,17 +22,12 @@ export const Login = () => {
       .then(
         (token) => {
           if (token) {
-            const cookie_expitarion_time = new Date(new Date().getTime() + 15 * 60 * 1000);
-            Cookies.set(SESSION_COOKIE_NAME, token.token, {
-              expires: cookie_expitarion_time
-          })
             window.location.href = '/profile';
           } else {
             setError('El usuario y/o contraseña que ingresó son incorrectos.')
           }
         }
       )
-
   }
 
   useEffect(() => {

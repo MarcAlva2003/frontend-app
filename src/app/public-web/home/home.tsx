@@ -8,7 +8,7 @@ import {enUS, es} from "date-fns/locale";
 import { useEffect, useState } from "react";
 
 import { Button } from "../../../ui/button/button";
-import { DeleteCompanyModal } from "../delete-company-modal/delete-company-modal";
+import { DeleteCompanyModal } from "../../../components/delete-company-modal/delete-company-modal";
 import { HomeStyle } from "./home-style";
 import { ICompany } from "../../../services/interfaces";
 import { format } from 'date-fns';

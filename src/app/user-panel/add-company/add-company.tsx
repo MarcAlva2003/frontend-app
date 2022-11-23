@@ -28,13 +28,6 @@ export const AddCompany = () => {
   }, []);
 
   const onSubmit = (data: any) => {
-    // console.log(data);
-    // console.log(new Date(data.foundation_date).getDate() + 1)
-    // console.log(new Date(data.foundation_date).getMonth() + 1)
-    // console.log(new Date(data.foundation_date).getFullYear())
-    console.log(
-      data
-    )
     getAddCompany({
       name: data.name,
       company_business: data.company_business,
