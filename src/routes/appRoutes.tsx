@@ -18,6 +18,7 @@ export const AppRoutes = () => {
       <Route path="/register" element={<Register/>} />
       <Route path="/profile" element={<PrivateRoute component={Profile}/>}/>
       <Route path="/companies/add" element={<PrivateRoute component={AddCompany}/>}/>
+      <Route path="/companies/edit/:id" element={<PrivateRoute component={AddCompany}/>}/>
     </Routes>
     </>
   )

@@ -10,8 +10,9 @@ const REGISTER_PATH = "/users/register/"
 export const isAuthenticated = () => Cookies.get(SESSION_COOKIE_NAME) !== undefined;
 
 const loginUser = (token: string) => {
-  console.log(token)
-  const cookie_expitarion_time = new Date(new Date().getTime() + 15 * 60 * 1000);
+  console.log(token);
+  const DAYS = 15;
+  const cookie_expitarion_time = new Date(new Date().getTime() + DAYS * 24 * 60 * 60 * 1000);
   Cookies.set(SESSION_COOKIE_NAME, token, {
     expires: cookie_expitarion_time
   })
@@ -26,7 +27,7 @@ export const login = async ({ username, password }: { username: string, password
         password: password
       }
     )
-    loginUser(res.data);
+    loginUser(res.data.token);
     return res.data;
   } catch (err) {
     return undefined;
@@ -39,7 +40,7 @@ export const registerQuery = async ({ ...data }: IRegister) => {
       `${BASE_URL}${REGISTER_PATH}`,
       {
         first_name: data.firstName,
-        second_name: data.secondName,
+        last_name: data.secondName,
         email: data.email,
         username: data.username,
         password: data.password

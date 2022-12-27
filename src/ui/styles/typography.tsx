@@ -41,7 +41,7 @@ const Subhead1Style = css`
   line-height: 28px;
   font-weight: 500;
 `
-export const Subhead1 =  styled.h4.attrs((props: TextProps) => props)`
+export const Subhead1 =  styled.h3.attrs((props: TextProps) => props)`
   ${Subhead1Style}
   ${props => props.color && css`
     color: ${props.color}
@@ -69,7 +69,7 @@ const Text16Style = css`
   line-height: 20px;
   font-weight: 400;
 `
-export const Text16 =  styled.h4.attrs((props: TextProps) => props)`
+export const Text16 =  styled.p.attrs((props: TextProps) => props)`
   ${Text16Style}
   ${props => props.color && css`
     color: ${props.color}
@@ -83,7 +83,7 @@ const Text14Style = css`
   line-height: 16px;
   font-weight: 300;
 `
-export const Text14 =  styled.h4.attrs((props: TextProps) => props)`
+export const Text14 =  styled.p.attrs((props: TextProps) => props)`
   ${Text14Style}
   ${props => props.color && css`
     color: ${props.color}
@@ -98,7 +98,7 @@ const Text12Style = css`
   line-height: 14px;
   font-weight: 300;
 `
-export const Text12 =  styled.h4.attrs((props: TextProps) => props)`
+export const Text12 =  styled.p.attrs((props: TextProps) => props)`
   ${Text12Style}
   ${props => props.color && css`
     color: ${props.color}

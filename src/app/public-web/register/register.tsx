@@ -29,6 +29,14 @@ export const Register = () => {
   }, [])
 
   const handleRegister = async () => {
+    console.log({
+      firstName: firstName,
+      secondName: secondName,
+      email: email,
+      username: username,
+      password: password,
+      repeatPassword: repeatPassword,
+    })
     await registerQuery({
       firstName: firstName,
       secondName: secondName,
