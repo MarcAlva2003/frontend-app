@@ -101,6 +101,16 @@ export const Home = () => {
                       </Link>
                     </div>
                     <div className="company-card-buttons--button">
+                      <Link to={`/companies/edit/${item?.id}`}>
+                        <Button
+                          type="secondary"
+                          size="large"
+                          text="Edit"
+                          radius="low"
+                        />
+                      </Link>
+                    </div>
+                    <div className="company-card-buttons--button">
                       <Button
                         type="danger1"
                         size="large"

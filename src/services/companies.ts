@@ -8,6 +8,7 @@ const COMPANIES_LIST_PATH = '/companies/list/';
 const COMPANY_ID_PATH = '/companies/';
 const COMPANY_DELETE_PATH = '/companies/delete/'
 const COMPANY_ADD_PATH = '/companies/add/'
+const COMPANY_EDIT_PATH = '/companies/edit/'
 
 export const getCompaniesList = async () => {
   try {
@@ -39,7 +40,7 @@ export const getDeleteCompany = async (id: string) => {
       `${BASE_URL}${COMPANY_DELETE_PATH}${id}`,
       {
         headers: {
-          "Authorization": `Token ${token}`
+          "Authorization": `Token 6721b4e84d8079671dd4e629e24e595e57c9ef3d`
         }
       }
     )
@@ -51,6 +52,7 @@ export const getDeleteCompany = async (id: string) => {
 
 export const getAddCompany = async (data: ICompany) => {
   const token = Cookies.get(SESSION_COOKIE_NAME);
+  console.log(token);
   try {
     const res = await axios({
       method: 'post',
@@ -70,6 +72,29 @@ export const getAddCompany = async (data: ICompany) => {
   } catch (err) {
     console.log('err', err);
 
+    return undefined;
+  }
+}
+
+export const getEditCompany = async (data: ICompany, id: string) => {
+  const token = Cookies.get(SESSION_COOKIE_NAME);
+  console.log(token);
+  try {
+    const res = await axios({
+      method: 'put',
+      url: `${BASE_URL}${COMPANY_EDIT_PATH}${id}`,
+      headers: {
+        "Authorization": `Token ${token}`
+      },
+      data: {
+        name: data.name,
+        company_business: data.company_business,
+        foundation_date: data.foundation_date,
+        foundation_country: data.foundation_country,
+      },
+    });
+    return res.data;
+  } catch (err) {
     return undefined;
   }
 }
