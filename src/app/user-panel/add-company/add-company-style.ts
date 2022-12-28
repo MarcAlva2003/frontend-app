@@ -20,6 +20,7 @@ export const AddCompanyStyle = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 50px;
+    column-gap: 30px;
   }
   .input-group{
     display: flex;

@@ -4,7 +4,7 @@ interface IInput{
   type: 'text' | 'password';
   placeholder: string;
   value: string;
-  onChange: (ev: any) => void;
+  onChange?: (ev: any) => void;
 }
 
 export const Input = (props: IInput) => {
@@ -14,7 +14,7 @@ export const Input = (props: IInput) => {
         type={props.type}
         placeholder={props.placeholder}
         value={props.value}
-        onChange={(ev: any) => {props.onChange(ev)}}
+        onChange={(ev: any) => {props.onChange && props.onChange(ev)}}
       />
     </InputStyle>
   )

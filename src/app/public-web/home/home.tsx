@@ -4,13 +4,16 @@ import {
   Text16
 } from "../../../ui/styles/typography";
 import { Link, useNavigate } from "react-router-dom";
-import {enUS, es} from "date-fns/locale";
+import { enUS, es } from "date-fns/locale";
 import { useEffect, useState } from "react";
 
 import { Button } from "../../../ui/button/button";
 import { DeleteCompanyModal } from "../../../components/delete-company-modal/delete-company-modal";
 import { HomeStyle } from "./home-style";
 import { ICompany } from "../../../services/interfaces";
+import { Icon } from "../../../ui/icon/icon";
+import { IconList } from "../../../ui/iconsList";
+import { Theme } from "../../../ui/styles/theme";
 import { format } from 'date-fns';
 import { getCompaniesList } from "../../../services/companies";
 import { getDeleteCompany } from "../../../services/companies";
@@ -42,17 +45,6 @@ export const Home = () => {
     }
   }
 
-  // const getOrdinal = (number: number): string => {
-  //   if(number !== 11 && number !== 12){
-  //     const lastChar = number.toString()[number.toString().length - 1];
-  //     return lastChar === '1' ? `${number}st`
-  //       : lastChar === '2' ? `${number}nd`
-  //       : lastChar === '3' ? `${number}rd`
-  //       : `${number}th`;
-  //   }
-  //   return `${number}th`;
-  // };
-
   return (
     <HomeStyle>
       <div className="home-background">
@@ -63,68 +55,101 @@ export const Home = () => {
                 <Heading1>Companies List</Heading1>
               </div>
               <div className="home-title--button">
-                <Link to="/companies/add">
-                  <Button
-                    text="Add company"
-                    type="primary"
-                    size="large"
-                    radius="medium"
-                  />
-                </Link>
+                {(companies && companies?.length > 0) && (
+                  <Link to="/companies/add">
+                    <Button
+                      text="Add company"
+                      type="primary"
+                      size="large"
+                      radius="medium"
+                    />
+                  </Link>
+                )}
               </div>
             </div>
-            <div className="companies-list">
-              {companies?.map((item: any, index: number) => (
-                <div className="company-card" key={`company-item-${index}`}>
-                  <div className="company-card-name">
-                    <Subhead1>{item?.name}</Subhead1>
-                  </div>
-                  <div className="company-card-text">
-                    <div className="company-card-text--country">
-                      <Text16>Foundation country: {item?.foundation_country}</Text16>
-                    </div>
-                    <div className="company-card-text--date">
-                      <Text16>Foundation date: {getOrdinal(new Date(item?.foundation_date).getDate() + 1)}
-                        {format(new Date(item?.foundation_date), ` MMMM, yyyy`, {locale: enUS})}
-                        </Text16>
-                    </div>
-                  </div>
-                  <div className="company-card-buttons">
-                    <div className="company-card-buttons--button">
-                      <Link to={`/companies/${item?.id}`}>
-                        <Button
-                          type="secondary"
-                          size="large"
-                          text="Details"
-                          radius="low"
-                        />
-                      </Link>
-                    </div>
-                    <div className="company-card-buttons--button">
-                      <Link to={`/companies/edit/${item?.id}`}>
-                        <Button
-                          type="secondary"
-                          size="large"
-                          text="Edit"
-                          radius="low"
-                        />
-                      </Link>
-                    </div>
-                    <div className="company-card-buttons--button">
-                      <Button
-                        type="danger1"
-                        size="large"
-                        text="Delete"
-                        radius="low"
-                        onClick={() => {
-                          handleDeleteCompanyAuth(item?.id)
-                        }}
+            {(companies?.length === 0 || !companies) ? (
+              <div className="companies-empty">
+                <div className="companies-empty--title">
+                  <Subhead1>We could not find companies</Subhead1>
+                </div>
+                {/* <div className="companies-empty--icon">
+                  <Icon
+                    icon={IconList.custom.building}
+                    size="70px"
+                    fillColor={Theme.blues.blue500}
+                  />
+                </div> */}
+                <Link to="/companies/add">
+                  <div className="companies-empty--message">
+                    <div className="companies-empty--message__icon">
+                      <Icon
+                        icon={IconList.actions.add}
+                        size="24px"
+                        fillColor={Theme.blues.blue500}
                       />
                     </div>
+                    <div className="companies-empty--message__text">
+                      <Text16
+                        color={Theme.blues.blue500}
+                      >Add a company</Text16>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                </Link>
+              </div>
+            ) : (
+              <div className="companies-list">
+                {companies?.map((item: any, index: number) => (
+                  <div className="company-card" key={`company-item-${index}`}>
+                    <div className="company-card-name">
+                      <Subhead1>{item?.name}</Subhead1>
+                    </div>
+                    <div className="company-card-text">
+                      <div className="company-card-text--country">
+                        <Text16>Foundation country: {item?.foundation_country}</Text16>
+                      </div>
+                      <div className="company-card-text--date">
+                        <Text16>Foundation date: {getOrdinal(new Date(item?.foundation_date).getDate() + 1)}
+                          {format(new Date(item?.foundation_date), ` MMMM, yyyy`, { locale: enUS })}
+                        </Text16>
+                      </div>
+                    </div>
+                    <div className="company-card-buttons">
+                      <div className="company-card-buttons--button">
+                        <Link to={`/companies/${item?.id}`}>
+                          <Button
+                            type="secondary"
+                            size="large"
+                            text="Details"
+                            radius="low"
+                          />
+                        </Link>
+                      </div>
+                      <div className="company-card-buttons--button">
+                        <Link to={`/companies/edit/${item?.id}`}>
+                          <Button
+                            type="secondary"
+                            size="large"
+                            text="Edit"
+                            radius="low"
+                          />
+                        </Link>
+                      </div>
+                      <div className="company-card-buttons--button">
+                        <Button
+                          type="danger1"
+                          size="large"
+                          text="Delete"
+                          radius="low"
+                          onClick={() => {
+                            handleDeleteCompanyAuth(item?.id)
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

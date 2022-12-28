@@ -95,7 +95,7 @@ export const AddCompany = () => {
                   ...register('name', {
                     required: true,
                     maxLength: 200,
-                    pattern: /^[A-Za-zÀ-ú0-9-ñÑ ]+$/
+                    // pattern: /^[A-Za-zÀ-ú0-9-ñÑ ]+$/
                   })
                   }
                 />
@@ -106,9 +106,9 @@ export const AddCompany = () => {
                   {errors.name?.type === 'maxLength' && (
                     <div className="error-field"><Text14 weight={400} color={Theme.danger.danger500}>The name cannot be longer than 200 characters</Text14></div>
                   )}
-                  {errors.name?.type === 'pattern' && (
+                  {/* {errors.name?.type === 'pattern' && (
                     <div className="error-field"><Text14 weight={400} color={Theme.danger.danger500}>The name can only have letters and numbers</Text14></div>
-                  )}
+                  )} */}
                 </div>
               </div>
               <div className="input-group">

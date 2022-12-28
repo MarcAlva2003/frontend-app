@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { pageFormat } from "../../../ui/styles/page-format";
+import styled from "styled-components";
 
 export const HomeStyle = styled.div`
   .home-background{
@@ -34,6 +34,23 @@ export const HomeStyle = styled.div`
             margin-right: 0;
           }
         }
+      }
+    }
+  }
+  .companies-empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    &--title{
+      margin-bottom: 32px;
+    }
+    &--message{
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      &__icon{
+        margin-right: 8px;
       }
     }
   }
