@@ -14,3 +14,10 @@ export interface IRegister{
   password: string;
   repeatPassword: string;
 }
+
+export interface IUserEdit {
+  operation: 'username' | 'first_name' | 'last_name';
+  username: string;
+  first_name: string;
+  last_name: string;
+}

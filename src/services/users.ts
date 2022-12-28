@@ -1,5 +1,6 @@
 import { BASE_URL } from "./getApiUrlBase";
 import Cookies from "js-cookie";
+import { IUserEdit } from "./interfaces";
 import { SESSION_COOKIE_NAME } from "./auth";
 import axios from "axios";
 
@@ -21,6 +22,28 @@ export const getUserInformation = async () => {
     return res.data;
   } catch (err) {
     console.log('getUserInformation: ', err)
+    return undefined;
+  }
+}
+
+export const getEditUserInformation = async (data: IUserEdit) => {
+  const token = Cookies.get(SESSION_COOKIE_NAME);
+  try {
+    const res = await axios({
+      method: 'put',
+      url: `${BASE_URL}${USER_DETAIL_PATH}`,
+      headers: {
+        "Authorization": `Token ${token}`
+      },
+      data: {
+        operation: data.operation,
+        username: data.username,
+        first_name: data.first_name,
+        last_name: data.last_name,
+      },
+    });
+    return res.data;
+  } catch (err) {
     return undefined;
   }
 }

@@ -12,6 +12,7 @@ import { ProfileStyle } from "./profile-style";
 import { SESSION_COOKIE_NAME } from "../../../services/auth";
 import { Theme } from "../../../ui/styles/theme";
 import { capitalize } from 'lodash';
+import { getEditUserInformation } from "../../../services/users";
 import { getUserInformation } from "../../../services/users";
 
 export const Profile = () => {
@@ -26,7 +27,7 @@ export const Profile = () => {
   const [editUserField, setEditUserField] = useState<
     {
       active: boolean,
-      field: 'username' | 'first_name' | 'last_name' | 'email',
+      field: 'username' | 'first_name' | 'last_name',
     }
   >({
     active: false,
@@ -39,7 +40,6 @@ export const Profile = () => {
       username: '',
       first_name: '',
       last_name: '',
-      email: '',
     }
   })
   const { register, watch, setValue } = formMethods;
@@ -49,8 +49,18 @@ export const Profile = () => {
     register('username');
     register('first_name');
     register('last_name');
-    register('email');
   }, []);
+
+  const onEdit = () => {
+    getEditUserInformation({
+      operation: editUserField.field,
+      first_name: watch('first_name'),
+      username: watch('username'),
+      last_name: watch('last_name'),
+    }).then(res => {
+      getUserInformation().then(res => setUser(res));
+    })
+  }
 
   // useEffect(() => {
 
@@ -197,6 +207,11 @@ export const Profile = () => {
                 text="Save"
                 type="primary"
                 size="large"
+                onClick={() => {
+                  setEditUserField({ ...editUserField, active: false });
+                  onEdit();
+                  setValue(editUserField.field, '');
+                }}
               />
             </div>
           </div>
