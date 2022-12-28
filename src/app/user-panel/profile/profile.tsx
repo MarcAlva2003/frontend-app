@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import { Button } from "../../../ui/button/button";
 import Cookies from "js-cookie";
+import { Icon } from "../../../ui/icon/icon";
+import { IconList } from "../../../ui/iconsList";
 import { Input } from "../../../ui/input/input";
 import { ModalWrapper } from "../../../ui/modal-wrapper/modal-wrapper";
 import { ProfileStyle } from "./profile-style";
@@ -27,20 +29,20 @@ export const Profile = () => {
       field: 'username' | 'first_name' | 'last_name' | 'email',
     }
   >({
-    active: true,
+    active: false,
     field: 'last_name',
   });
 
 
   const formMethods = useForm({
-    defaultValues:{
+    defaultValues: {
       username: '',
       first_name: '',
       last_name: '',
       email: '',
     }
   })
-  const {register, watch, setValue} = formMethods;
+  const { register, watch, setValue } = formMethods;
 
   useEffect(() => {
     getUserInformation().then(res => setUser(res));
@@ -51,7 +53,7 @@ export const Profile = () => {
   }, []);
 
   // useEffect(() => {
-    
+
   // }, []);
 
   return (
@@ -73,6 +75,18 @@ export const Profile = () => {
                   weight={400}
                 >{user?.username}</Subhead1>
               </div>
+              <div
+                className="profile-body-row--item modify-button"
+                onClick={() => {
+                  setEditUserField({ field: "username", active: true })
+                }}
+              >
+                <Icon
+                  icon={IconList.actions.edit}
+                  size="24px"
+                  fillColor={Theme.blues.blue200}
+                />
+              </div>
             </div>
             <div className="profile-body-row first-name-row">
               <div className="profile-body-row--item">
@@ -85,10 +99,23 @@ export const Profile = () => {
                   weight={400}
                 >{user?.first_name}</Text16>
               </div>
-              <div className="profile-body-row--item modify-button">
-                <Text16
-                  weight={400}
-                >{user?.last_name === '' ? 'Add first name' : 'Modify first name'}</Text16>
+              <div
+                className="profile-body-row--item modify-button"
+                onClick={() => {
+                  setEditUserField({ field: "first_name", active: true })
+                }}  
+              >
+                {user?.first_name === '' ? (
+                  <Text16
+                    weight={400}
+                  >Add first name</Text16>
+                ) : (
+                  <Icon
+                    icon={IconList.actions.edit}
+                    size="22px"
+                    fillColor={Theme.blues.blue200}
+                  />
+                )}
               </div>
             </div>
             <div className="profile-body-row second-name-row">
@@ -102,10 +129,23 @@ export const Profile = () => {
                   weight={400}
                 >{user?.last_name}</Text16>
               </div>
-              <div className="profile-body-row--item modify-button">
-                <Text16
-                  weight={400}
-                >{user?.last_name === '' ? 'Add last name' : 'Modify last name'}</Text16>
+              <div
+                className="profile-body-row--item modify-button"
+                onClick={() => {
+                  setEditUserField({ field: "last_name", active: true })
+                }}  
+              >
+                {user?.last_name === '' ? (
+                  <Text16
+                    weight={400}
+                  >Add last name</Text16>
+                ) : (
+                  <Icon
+                    icon={IconList.actions.edit}
+                    size="22px"
+                    fillColor={Theme.blues.blue200}
+                  />
+                )}
               </div>
             </div>
             <div className="profile-body-row email-row">
@@ -136,7 +176,7 @@ export const Profile = () => {
                 type="text"
                 placeholder={capitalize(editUserField.field.replace('_', ' '))}
                 value={watch(editUserField.field)}
-                onChange={(ev: any) => {setValue(editUserField.field, ev.target.value)}}
+                onChange={(ev: any) => { setValue(editUserField.field, ev.target.value) }}
               />
             </div>
           </FormProvider>
@@ -146,6 +186,10 @@ export const Profile = () => {
                 text="Cancel"
                 type="danger1"
                 size="large"
+                onClick={() => {
+                  setEditUserField({ ...editUserField, active: false });
+                  setValue(editUserField.field, '');
+                }}
               />
             </div>
             <div className="modal-buttons--button">

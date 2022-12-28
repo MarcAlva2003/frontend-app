@@ -35,6 +35,7 @@ export const ProfileStyle = styled.div`
   }
   .modify-button{
     cursor: pointer;
+    margin-left: 8px;
     p{
       user-select: none;
       color: ${props => props.theme.blues.blue300};

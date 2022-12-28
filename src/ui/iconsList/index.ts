@@ -1,7 +1,9 @@
+import edit from './actions/edit.svg';
 import logout from './actions/logout.svg';
 
 interface IActions{
   logout: string;
+  edit: string;
 }
 
 interface IIconList{
@@ -10,6 +12,7 @@ interface IIconList{
 
 export const IconList: IIconList = {
   actions:{
-    logout: logout
+    logout: logout,
+    edit: edit
   }
 }
