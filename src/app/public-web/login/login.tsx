@@ -3,18 +3,22 @@ import { useEffect, useState } from 'react'
 
 import { Button } from '../../../ui/button/button';
 import Cookies from 'js-cookie';
+import { IconList } from '../../../ui/iconsList';
 import { Input } from '../../../ui/input/input';
+import { Link } from 'react-router-dom';
 import { LoginStyle } from './login-style'
 import { SESSION_COOKIE_NAME } from '../../../services/auth';
 import { Theme } from '../../../ui/styles/theme';
 import { isAuthenticated } from "../../../services/auth";
 import { login } from '../../../services/auth'
 import { useNavigate } from "react-router-dom";
+import { watch } from 'fs';
 
 export const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
   const handleLogin = async () => {
@@ -32,7 +36,7 @@ export const Login = () => {
 
   useEffect(() => {
     isAuthenticated() && navigate('/profile')
-  })
+  }, [])
 
   return (
     <LoginStyle>
@@ -53,10 +57,16 @@ export const Login = () => {
           <div className='password-input input-group'>
             <Text16>Password</Text16>
             <Input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder='Password'
               value={password}
               onChange={(ev: any) => { setError(''); setPassword(ev.target.value) }}
+              iconRight={{
+                icon: showPassword ? IconList.actions.showPassword : IconList.actions.hidePassword,
+                size: "20px",
+                fillColor: Theme.greys.grey400,
+                onClickFunction: () => {setShowPassword(!showPassword)}
+              }}
             />
           </div>
           {error && (
@@ -72,11 +82,17 @@ export const Login = () => {
               type='primary'
               size='large'
               text='Login'
+              disabled={password.length < 8 || username.length === 0}
               onClick={(ev: any) => {
                 ev.preventDefault();
                 handleLogin()
               }}
             />
+          </div>
+          <div className='register-option'>
+            <Text16>
+              You don´t have an account yet? <Link to={'/register'}><span>Register</span></Link>
+            </Text16>
           </div>
         </form>
       </div>

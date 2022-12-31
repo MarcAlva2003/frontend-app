@@ -28,4 +28,16 @@ export const LoginStyle = styled.div`
   .error-message{
     margin-bottom: 12px;
   }
+  .register-option{
+    margin-top: 30px;
+    span{
+      text-decoration: underline;
+      color: ${props => props.theme.blues.blue400};
+      font-weight: 500;
+      &:hover{
+        cursor: pointer;
+        color: ${props => props.theme.blues.blue600};
+      }
+    }
+  }
 `

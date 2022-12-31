@@ -7,8 +7,8 @@ export interface ICompany {
 }
 
 export interface IRegister{
-  firstName: string;
-  secondName: string;
+  // firstName: string;
+  // secondName: string;
   email: string;
   username: string;
   password: string;

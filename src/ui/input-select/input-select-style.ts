@@ -1,38 +1,34 @@
 import styled from "styled-components";
 
-export const InputStyle = styled.div`
+export const SelectStyle = styled.div`
   width: 100%;
-  input{
+  select{
     width: 100%;
     height: 36px;
-    border-radius: 6px;
-    padding-left: 12px;
+    padding: 0 12px;
     border: 1px solid ${props => props.theme.greys.grey400};
     transition: border 0.3s ease;
     color: ${props => props.theme.greys.grey700};
-    &::placeholder{
-      color: ${props => props.theme.greys.grey400};
+    border-radius: 6px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    &:hover{
+      cursor: pointer;
     }
     &:focus{
-      /* outline: 1px solid red; */
       border: 1px solid ${props => props.theme.blues.blue400};
       outline: none;
     }
   }
-  .input-wrapper{
+  .select-wrapper{
     position: relative;
     &--icon{
       position: absolute;
       height: 100%;
+      top: 0;
       display: flex;
       align-items: center;
       right: 12px;
-      top: 0;
-      &.clickeable{
-        &:hover{
-          cursor: pointer;
-        }
-      }
     }
   }
 `

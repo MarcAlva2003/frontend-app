@@ -39,8 +39,8 @@ export const registerQuery = async ({ ...data }: IRegister) => {
     const res = await axios.post(
       `${BASE_URL}${REGISTER_PATH}`,
       {
-        first_name: data.firstName,
-        last_name: data.secondName,
+        // first_name: data.firstName,
+        // last_name: data.secondName,
         email: data.email,
         username: data.username,
         password: data.password

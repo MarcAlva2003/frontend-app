@@ -9,7 +9,9 @@ export const IconStyle = styled.div.attrs((
     strokeColor?: string;
   })=>props)`
 
+  min-width: ${props => props.iconSize ? props.iconSize : props.width};
   width: ${props => props.iconSize ? props.iconSize : props.width};
+  min-height: ${props => props.iconSize ? props.iconSize : props.height};
   height: ${props => props.iconSize ? props.iconSize : props.height};
   div{
     width: 100%;

@@ -2,6 +2,7 @@ import { Heading2, Text16 } from "../../../ui/styles/typography";
 
 import { Button } from "../../../ui/button/button";
 import { Input } from "../../../ui/input/input";
+import { Link } from 'react-router-dom';
 import { RegisterStyle } from "./register-style";
 import { registerQuery } from '../../../services/auth';
 import { useEffect } from "react";
@@ -12,16 +13,12 @@ export const Register = () => {
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
   const [error, setError] = useState<string>('');
 
-  const firstName: string = watch('firstName');
-  const secondName: string = watch('secondName');
   const email: string = watch('email');
   const username: string = watch('username');
   const password: string = watch('password');
   const repeatPassword: string = watch('repeatPassword');
 
   useEffect(() => {
-    register('firstName');
-    register('secondName');
     register('email');
     register('username');
     register('password');
@@ -30,16 +27,12 @@ export const Register = () => {
 
   const handleRegister = async () => {
     console.log({
-      firstName: firstName,
-      secondName: secondName,
       email: email,
       username: username,
       password: password,
       repeatPassword: repeatPassword,
     })
     await registerQuery({
-      firstName: firstName,
-      secondName: secondName,
       email: email,
       username: username,
       password: password,
@@ -63,7 +56,7 @@ export const Register = () => {
           <Heading2>REGISTER</Heading2>
         </div>
         <form onSubmit={(ev: any)=>{ev.preventDefault()}}>
-          <div className="input-row">
+          {/* <div className="input-row">
             <div className='username-input input-group'>
               <Text16>First Name</Text16>
               <Input
@@ -86,7 +79,7 @@ export const Register = () => {
                 value={secondName}
               />
             </div>
-          </div>
+          </div> */}
           <div className="input-row">
             <div className='username-input input-group'>
               <Text16>Email</Text16>
@@ -145,6 +138,11 @@ export const Register = () => {
                 handleRegister();
               }}
             />
+          </div>
+          <div className='login-option'>
+            <Text16>
+              You already have an account? <Link to={'/login'}><span>Login</span></Link>
+            </Text16>
           </div>
         </form>
       </div>

@@ -1,6 +1,7 @@
 import { ButtonStyle } from "./button-style";
-import { IconList } from "../iconsList";
 import { Icon } from "../icon/icon";
+import { IconList } from "../iconsList";
+import { enGB } from "date-fns/locale";
 
 interface IButton {
   text?: string;
@@ -30,7 +31,8 @@ export const Button = (props: IButton) => {
         button
       `}
       onClick={(ev: any) => {
-        props.onClick && props.onClick(ev);
+        ev.preventDefault();
+        (props.onClick && !props.disabled) && props.onClick(ev);
       }}
     >
       <div className="button-center">
