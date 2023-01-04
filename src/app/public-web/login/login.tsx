@@ -44,7 +44,7 @@ export const Login = () => {
         <div className='login-header'>
           <Heading2>LOGIN</Heading2>
         </div>
-        <form action="">
+        <div>
           <div className='username-input input-group'>
             <Text16>User</Text16>
             <Input
@@ -82,7 +82,7 @@ export const Login = () => {
               type='primary'
               size='large'
               text='Login'
-              disabled={password.length < 8 || username.length === 0}
+              // disabled={password.length < 8 || username.length === 0}
               onClick={(ev: any) => {
                 ev.preventDefault();
                 handleLogin()
@@ -94,7 +94,12 @@ export const Login = () => {
               You don´t have an account yet? <Link to={'/register'}><span>Register</span></Link>
             </Text16>
           </div>
-        </form>
+          <div className='home-option'>
+            <Text16>
+              Go back <Link to={'/'}><span>home</span></Link>
+            </Text16>
+          </div>
+        </div>
       </div>
     </LoginStyle >
   )

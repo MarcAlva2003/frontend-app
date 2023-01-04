@@ -28,6 +28,7 @@ export const LoginStyle = styled.div`
   .error-message{
     margin-bottom: 12px;
   }
+  .home-option,
   .register-option{
     margin-top: 30px;
     span{

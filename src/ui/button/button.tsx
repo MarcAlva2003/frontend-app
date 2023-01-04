@@ -31,8 +31,8 @@ export const Button = (props: IButton) => {
         button
       `}
       onClick={(ev: any) => {
-        ev.preventDefault();
         (props.onClick && !props.disabled) && props.onClick(ev);
+        // ev.preventDefault();
       }}
     >
       <div className="button-center">

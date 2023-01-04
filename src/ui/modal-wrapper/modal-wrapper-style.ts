@@ -12,9 +12,11 @@ export const ModalWrapperStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: hidden;
   &.active{
     z-index: 1000;
     opacity: 1;
+    visibility: visible;
   }
   .modal-content{
     padding: 24px;

@@ -33,6 +33,7 @@ export const RegisterStyle = styled.div`
     grid-template-columns: 1fr 1fr;
     column-gap: 12px;
   }
+  .home-option,
   .login-option{
     margin-top: 30px;
     span{
