@@ -4,7 +4,6 @@ import {
   Text16
 } from "../../../ui/styles/typography";
 import { Link, useNavigate } from "react-router-dom";
-import { enUS, es } from "date-fns/locale";
 import { useEffect, useState } from "react";
 
 import { Button } from "../../../ui/button/button";
@@ -14,6 +13,7 @@ import { ICompany } from "../../../services/interfaces";
 import { Icon } from "../../../ui/icon/icon";
 import { IconList } from "../../../ui/iconsList";
 import { Theme } from "../../../ui/styles/theme";
+import { enUS } from "date-fns/locale";
 import { format } from 'date-fns';
 import { getCompaniesList } from "../../../services/companies";
 import { getDeleteCompany } from "../../../services/companies";

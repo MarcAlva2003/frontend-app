@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 export const Register = () => {
-  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
+  const { register, setValue, watch } = useForm();
   const [error, setError] = useState<string>('');
 
   const [showPassword, setShowPassword] = useState<{pass1: boolean, pass2: boolean}>({
@@ -31,7 +31,8 @@ export const Register = () => {
     register('username');
     register('password');
     register('repeatPassword');
-  }, [])
+    // eslint-disable-next-line
+  },[]);
 
   const handleRegister = async () => {
 

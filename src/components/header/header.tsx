@@ -1,10 +1,9 @@
+import Cookies from 'js-cookie';
 import { HeaderStyle } from "./header-style";
 import { Heading1 } from "../../ui/styles/typography";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { isAuthenticated } from "../../services/auth";
 import { SESSION_COOKIE_NAME } from "../../services/auth";
-import Cookies from 'js-cookie';
+import { isAuthenticated } from "../../services/auth";
 
 export const Header = () => {
   const isLogged = isAuthenticated();

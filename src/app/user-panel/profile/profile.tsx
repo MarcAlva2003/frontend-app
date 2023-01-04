@@ -3,13 +3,11 @@ import { Heading1, Subhead1, Text16 } from "../../../ui/styles/typography";
 import { useEffect, useState } from 'react';
 
 import { Button } from "../../../ui/button/button";
-import Cookies from "js-cookie";
 import { Icon } from "../../../ui/icon/icon";
 import { IconList } from "../../../ui/iconsList";
 import { Input } from "../../../ui/input/input";
 import { ModalWrapper } from "../../../ui/modal-wrapper/modal-wrapper";
 import { ProfileStyle } from "./profile-style";
-import { SESSION_COOKIE_NAME } from "../../../services/auth";
 import { Theme } from "../../../ui/styles/theme";
 import { capitalize } from 'lodash';
 import { getEditUserInformation } from "../../../services/users";
@@ -49,6 +47,7 @@ export const Profile = () => {
     register('username');
     register('first_name');
     register('last_name');
+    // eslint-disable-next-line
   }, []);
 
   const onEdit = () => {
@@ -61,10 +60,6 @@ export const Profile = () => {
       getUserInformation().then(res => setUser(res));
     })
   }
-
-  // useEffect(() => {
-
-  // }, []);
 
   return (
     <ProfileStyle>

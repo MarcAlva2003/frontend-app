@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { Icon } from "../icon/icon";
 import { IconList } from "../iconsList";
 import { SelectStyle } from "./input-select-style";

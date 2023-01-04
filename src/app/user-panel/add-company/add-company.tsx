@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { Heading1, Text14 } from "../../../ui/styles/typography";
 import { getAddCompany, getEditCompany } from "../../../services/companies";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { AddCompanyStyle } from "./add-company-style";
@@ -86,6 +86,7 @@ export const AddCompany = () => {
       setValue('foundation_date', data.foundation_date);
       setValue('foundation_country', data.foundation_country);
     }
+    // eslint-disable-next-line
   }, [data])
 
   useEffect(() => {
