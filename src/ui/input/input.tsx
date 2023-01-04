@@ -23,7 +23,6 @@ interface IInput {
 export const Input = (props: IInput) => {
   const {
     iconRight,
-    iconLeft
   } = props;
   return (
     <InputStyle>

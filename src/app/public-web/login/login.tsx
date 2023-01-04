@@ -2,17 +2,14 @@ import { Heading2, Text14, Text16 } from '../../../ui/styles/typography';
 import { useEffect, useState } from 'react'
 
 import { Button } from '../../../ui/button/button';
-import Cookies from 'js-cookie';
 import { IconList } from '../../../ui/iconsList';
 import { Input } from '../../../ui/input/input';
 import { Link } from 'react-router-dom';
 import { LoginStyle } from './login-style'
-import { SESSION_COOKIE_NAME } from '../../../services/auth';
 import { Theme } from '../../../ui/styles/theme';
 import { isAuthenticated } from "../../../services/auth";
 import { login } from '../../../services/auth'
 import { useNavigate } from "react-router-dom";
-import { watch } from 'fs';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -22,7 +19,7 @@ export const Login = () => {
   const [error, setError] = useState<string>('');
 
   const handleLogin = async () => {
-    const token = await login({ username: username, password: password })
+    await login({ username: username, password: password })
       .then(
         (token) => {
           if (token) {
@@ -35,7 +32,8 @@ export const Login = () => {
   }
 
   useEffect(() => {
-    isAuthenticated() && navigate('/profile')
+    isAuthenticated() && navigate('/profile');
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -65,7 +63,7 @@ export const Login = () => {
                 icon: showPassword ? IconList.actions.showPassword : IconList.actions.hidePassword,
                 size: "20px",
                 fillColor: Theme.greys.grey400,
-                onClickFunction: () => {setShowPassword(!showPassword)}
+                onClickFunction: () => { setShowPassword(!showPassword) }
               }}
             />
           </div>

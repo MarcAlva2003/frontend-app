@@ -1,10 +1,10 @@
-import { enUS, es } from "date-fns/locale";
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CompanyIdStyle } from "./company-id-style";
 import { Heading1 } from '../../../ui/styles/typography';
 import { ICompany } from '../../../services/interfaces';
 import { Subhead2 } from '../../../ui/styles/typography';
+import { enUS } from "date-fns/locale";
 import { format } from 'date-fns';
 import { getCompanyDetail } from "../../../services/companies";
 import { getOrdinal } from '../../../services/date-ordinal';

@@ -1,7 +1,4 @@
 import { ButtonStyle } from "./button-style";
-import { Icon } from "../icon/icon";
-import { IconList } from "../iconsList";
-import { enGB } from "date-fns/locale";
 
 interface IButton {
   text?: string;
